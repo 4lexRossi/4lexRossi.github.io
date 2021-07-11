@@ -37,6 +37,9 @@ h1 {
 h2 {
   font-size: 3.5rem;
 }
+.h2-sub {
+  font-size: 1.5rem;
+}
 
 h3 {
   font-size: 2rem;
@@ -45,6 +48,23 @@ h3 {
 p.lead {
   font-size: 1.15rem;
   font-weight: 400;
+}
+
+.btn-download {
+  background-color: teal;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 4px;
+  font-size: 20px;
+  margin-left: 15px;   
+}
+
+/* Darker background on mouse-over */
+.btn-download:hover {
+  background-color: rgb(0, 187, 187);
+  color: white;
+  text-decoration: none; 
 }
 
 .subheading {
