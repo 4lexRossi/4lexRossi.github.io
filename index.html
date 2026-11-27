@@ -1,532 +1,1264 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="dark scroll-smooth">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexsander O. Rossi | Staff Frontend &amp; Full-Stack Cloud Architect</title>
+  <meta name="description" content="Portfolio of Alexsander O. Rossi — Staff / Lead Frontend Engineer & Senior Full-Stack Cloud Architect (AWS Certified Solutions Architect – Associate & Cloud Practitioner)." />
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="portfólio">
-  <meta name="author" content="Alex Rossi">
-  <link rel="icon" type="image/x-icon" href="./img/profileLkdn.ico">
-  <title>Alex Rossi</title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-  <link href="vendor/fontawesome-free/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            },
+            aws: {
+              400: '#ff9900',
+              500: '#ec7211',
+            }
+          }
+        }
+      }
+    };
+  </script>
 
-  <link href="css/resume.css" rel="stylesheet">
+  <style>
+    /* Custom ambient mesh & glassmorphism utilities */
+    :root {
+      --bg-mesh-1: rgba(99, 102, 241, 0.14);
+      --bg-mesh-2: rgba(14, 165, 233, 0.12);
+      --bg-mesh-3: rgba(245, 158, 11, 0.08);
+    }
 
+    html.dark body {
+      background-color: #07090f;
+      color: #e2e8f0;
+    }
+
+    html:not(.dark) body {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    .ambient-bg {
+      background-image:
+        radial-gradient(at 15% 10%, var(--bg-mesh-1) 0px, transparent 50%),
+        radial-gradient(at 85% 20%, var(--bg-mesh-2) 0px, transparent 50%),
+        radial-gradient(at 50% 80%, var(--bg-mesh-3) 0px, transparent 55%);
+    }
+
+    .grid-pattern {
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    }
+
+    .glass-card {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.28s ease,
+                  box-shadow 0.28s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Scroll reveal states */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Subtle pulse for status dot */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.85); opacity: 0.9; }
+      70% { transform: scale(1.9); opacity: 0; }
+      100% { transform: scale(1.9); opacity: 0; }
+    }
+    .status-ping::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background-color: #10b981;
+      animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
 </head>
 
-<body id="page-top">
+<body class="font-sans antialiased selection:bg-brand-500 selection:text-white ambient-bg min-h-screen overflow-x-hidden">
+  <!-- Subtle background grid overlay -->
+  <div class="fixed inset-0 grid-pattern pointer-events-none z-0"></div>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">
-      <span class="d-block d-lg-none">Alexsander O. Rossi</span>
-      <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" width="" src="img/profile.jpg"
-          alt="Imagem de Alex Rossi Sorrindo">
-      </span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">About me</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#experience">Experiences</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#education">Education/Courses</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#languages">Idioms</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#awards">Certifications</a>
-        </li>
-      </ul>
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#07090f]/80 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Brand Monogram -->
+      <a href="#top" class="flex items-center gap-2.5 group focus:outline-none">
+        <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-sky-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform">
+          AR
+        </span>
+        <div class="flex flex-col">
+          <span class="font-mono text-sm font-semibold tracking-tight text-slate-900 dark:text-white">
+            AR <span class="text-brand-500">//</span> 4lexRossi
+          </span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:inline">
+            Staff Frontend &amp; Cloud Architect
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#about" class="px-3 py-2 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-colors">About</a>
+        <a href="#impact" class="px-3 py-2 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-colors">Impact &amp; Projects</a>
+        <a href="#experience" class="px-3 py-2 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-colors">Experience</a>
+        <a href="#skills" class="px-3 py-2 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-colors">Skills &amp; AWS</a>
+        <a href="#education" class="px-3 py-2 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/60 transition-colors">Education</a>
+      </nav>
+
+      <!-- Right Controls: Theme Toggle, CTA, Mobile Menu Button -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle Dark or Light Mode"
+          class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:border-brand-500/50 hover:text-brand-500 transition-colors"
+        >
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg id="icon-sun" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg id="icon-moon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <a
+          href="#contact"
+          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold shadow-md shadow-brand-600/20 transition-all"
+        >
+          <span>Get in Touch</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          aria-label="Open Navigation Menu"
+          class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
     </div>
-  </nav>
 
-  <div class="container-fluid p-0">
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#07090f]/95 px-4 py-3 space-y-1">
+      <a href="#about" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+      <a href="#impact" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Impact &amp; Projects</a>
+      <a href="#experience" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Experience</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Skills &amp; AWS</a>
+      <a href="#education" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Education</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-sm font-semibold text-brand-600 dark:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800">Get in Touch</a>
+    </div>
+  </header>
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center">
-      <div class="w-100">
-        <h1 class="mb-0">Alexsander O.
-          <span class="text-primary">Rossi</span>
+  <main id="top" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- HERO & ABOUT SECTION -->
+    <section id="about" class="pt-12 pb-16 sm:pt-20 sm:pb-24">
+      <div class="max-w-4xl">
+        <!-- Availability Pill -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-medium mb-6">
+          <span class="relative flex h-2.5 w-2.5 status-ping">
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span>Open to Remote &amp; International Opportunities • Based in Brazil</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08]">
+          Alexsander O. Rossi
         </h1>
-        <div class="subheading mb-5">
-          <span>+55 19 9 88308501 · Piracicaba/SP · 38 years</span>
-          <a href="/img/alexsander-rossi-en.pdf" padd class="btn-download pl-3 pr-3" download="alexsander-rossi-en.pdf"> <i
-              class="fa fa-download"></i> Resume </a>
-          <p>
-            <a href="mailto:devalexrossi@gmail.com">devalexrossi@gmail.com</a>
+
+        <!-- Role Tagline -->
+        <p class="mt-4 text-xl sm:text-2xl lg:text-3xl font-semibold bg-gradient-to-r from-brand-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent">
+          Staff / Lead Frontend Engineer &amp; Senior Full-Stack Cloud Architect
+        </p>
+
+        <!-- Interactive Perspective Switcher -->
+        <div class="mt-8 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md inline-flex flex-wrap gap-1.5" role="tablist" aria-label="Role Focus Perspective">
+          <button
+            type="button"
+            data-perspective="all"
+            class="perspective-btn active px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-brand-600 text-white shadow-sm"
+          >
+            All / Full-Stack Overview
+          </button>
+          <button
+            type="button"
+            data-perspective="frontend"
+            class="perspective-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800"
+          >
+            Staff / Lead Frontend
+          </button>
+          <button
+            type="button"
+            data-perspective="cloud"
+            class="perspective-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800"
+          >
+            Cloud &amp; Backend Architecture
+          </button>
+        </div>
+
+        <!-- Dynamic Narrative Summary -->
+        <div class="mt-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/65 dark:bg-slate-900/55 p-6 sm:p-7 glass-card">
+          <p id="hero-narrative" class="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            Senior Software Engineer with <strong class="text-slate-900 dark:text-white">6+ years of experience</strong> architecting scalable micro-frontend ecosystems, enterprise SaaS platforms, and cloud-native web applications across Europe (<strong class="text-slate-900 dark:text-white">Portugal, Spain, UK</strong>) and the Americas (<strong class="text-slate-900 dark:text-white">USA, Brazil</strong>). Backed by <strong class="text-amber-600 dark:text-amber-400">AWS Certified Solutions Architect – Associate</strong> and <strong class="text-amber-600 dark:text-amber-400">AWS Certified Cloud Practitioner</strong> credentials, I bridge deep frontend craftsmanship in <span class="font-mono text-sm text-brand-600 dark:text-brand-400">Vue 3</span>, <span class="font-mono text-sm text-brand-600 dark:text-brand-400">Angular</span>, and <span class="font-mono text-sm text-brand-600 dark:text-brand-400">TypeScript</span> with resilient backend services in <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Node.js</span>, <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Java/Spring</span>, and <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Go</span>.
           </p>
         </div>
-        <h2 class="mb-5" id="about">About me</h2>
-        <p>
-          I contributed to projects, such as a platform for banking institutions used by the
-          world's largest banks.
-        </p>
-        <p>
-          Using Vue.Js, I created a user-friendly interface that allows
-          users to check the production and inventory status of credit cards. These banks can
-          now optimize their operations and improve their financial results.
-        </p>
-        <p>
-          I also worked on a healthcare platform that utilizes artificial intelligence to
-          analyze patient data, making medical consultations and prescriptions more
-          efficient and effective.
-        </p>
-        <p>
-          I used Angular 13 and Flutter to develop the entire frontend
-          and mobile of this system, which has the potential to revolutionize the healthcare
-          industry as we know it.
-        </p>
-        <p>
-          I worked in the development of a platform for banking institutions that
-          significantly enhances security and confirms the real identity of the customer.
-        </p>
-        <p>
-          Using Angular 12 and Java for the backend, I created a real-time verification system that
-          checks whether the customer's bank card SIM number has been changed before a
-          significant financial transaction.
-        </p>
-        <p>
-          Currently, this platform is widely used by major
-          banks, such as Santander and Bradesco, in various countries.
-        </p>
-        <p>
-          In addition to these projects, I also developed a complete system for the
-          world's third-largest automotive manufacturer, which simplifies the buying and
-          selling process between stores and factory orders.
-        </p>
-        <p>
-          Using Angular 10 and Java for
-          the backend, I created a user-friendly interface that includes robust security
-          features, making it an essential platform for managing complex transactions.
-        </p>
-        <p>
-          I also developed a SIM card reader for telecommunications companies
-          around the world that analyzes all data and generates a complete XML file. Using
-          Java 8, I created a widely used system in the telecommunications industry, making
-          data management more efficient and faster.
-        </p>
-        <p>
-          With these and other software development experiences, I possess the skills
-          to develop both large and small applications from scratch or update, refactor, and
-          create new features in existing complex applications.
-        </p>
-        <ul>
-          <li>
-            Angular 15+ / Vue.js - Development of complete interfaces with state control, international standard
-            responsiveness, backend connection, and unit tests.
-          </li>
-          <li>
-            Created REST APIs with the entire Spring framework ecosystem using Java 11.
-          </li>
-          <li>
-            Flutter - Development of mobile App for Android and IOS, backend connection.
-          </li>
-          <li>
-            Created REST APIs with node.JS.
-          </li>
-        </ul>
-        <div class="social-icons">
-          <a target="_blank" href="https://www.linkedin.com/in/4lex/">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a target="_blank" href="https://github.com/4lexRossi">
-            <i class="fab fa-github"></i>
-          </a>
-          <a target="_blank" href="https://wa.me/5519988308501">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a target="_blank" href="mailto:devalexrossi@gmail.com">
-            <i class="fas fa-envelope"></i>
-          </a>
-        </div>
-      </div>
-    </section>
 
-    <hr class="m-0">
+        <!-- Primary CTAs & Social Links -->
+        <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+          <a
+            href="#impact"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-brand-600/25 transition-all"
+          >
+            <span>Explore My Work</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+            </svg>
+          </a>
 
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
-      <div class="w-100">
-        <h2 class="mb-5">Experience<span class="h2-sub">(Relevante in IT)</span></h2>
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">Thales</h3>
-            <div class="subheading mb-3">Senior frontend Lead Developer</div>
-            <div class="resume-date">
-              <span class="text-primary">July 2022 - current</span>
-            </div>
-            <ul>
-              <li>
-                Responsible for the entire front-end development and maintenance of a system for
-                financial institutions that can manage the status of production and delivery orders
-                for credit/debit cards.
-              </li>
-              <li>
-                Developed complete interfaces with state control, international standard
-                responsiveness, backend connection, and unit tests using VueJS.
-              </li>
-              </p>
-            </ul>
-          </div>
-        </div>
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">Clarity Health</h3>
-            <div class="subheading mb-3">Senior frontend Developer</div>
-            <div class="resume-date">
-              <span class="text-primary">March 2022 - current</span>
-            </div>
-            <ul>
-              <li>
-                20 hours per week has a freelancer consultant, responsible for all the frontend development and
-                maintenance, in a system
-                for doctors and nurses manage patients in a platform that keeps the entire health history of the
-                patient, connected with public
-                and private health insurances in Brazil.
-              </li>
-              <li>
-                Angular 14 - Development of complete interfaces with state control, international standard
-                responsiveness, backend
-                connection, and unit tests.
-              </li>
-              <li>
-                Flutter - Development of mobile App for Android and IOS, backend connection.
-              </li>
-              </p>
-            </ul>
-          </div>
-        </div>
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">COGNIZANT</h3>
-            <div class="subheading mb-3">Full stack developer</div>
-            <div class="resume-date">
-              <span class="text-primary">October 2021 - July-2022</span>
-            </div>
-            <ul>
-              <li>
-                As a Full Stack Developer, I was responsible for developing and maintaining all the main pages, business
-                logic, and user
-                access authentication and control in a large-scale system. I implemented UI prototypes using the latest
-                Angular
-                features and best practices, and constantly looked for ways to improve the user experience.
-              </li>
-              <li>
-                My work included developing complete interfaces with state control and unit tests using Angular 10, and
-                creating REST
-                APIs with the entire Spring framework ecosystem using Java 11. I also worked with SQL databases such as
-                MariaDB and
-                MySQL. To ensure code quality, I wrote unit tests using Jasmine/Karma for Angular and Junit/Mockito for
-                Java, and used
-                Git/GitHub for version control. Additionally, I collaborated with other teams using Rally agile
-                methodologies.
-              </li>
-              </p>
-            </ul>
-          </div>
-        </div>
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">Venturus</h3>
-            <div class="subheading mb-3">Full Stack junior developer</div>
-            <div class="resume-date">
-              <span class="text-primary">November 2020 - October 2021</span>
-            </div>
-            <ul>
-              <li>
-                As a Jr Full Stack Developer at Venturus, I contributed to the development of a web application using
-                Angular 11 for the
-                frontend and Java 8/11 Spring for the backend. My responsibilities included developing complete
-                interfaces with state
-                control, ensuring international standard responsiveness and connecting to the backend.
-              </li>
-              <li>
-                I also developed REST APIs using the entire Spring framework ecosystem and worked with SQL databases. To
-                ensure
-                quality, I wrote unit tests for both Angular (Jasmine/Karma) and Java (Junit/Mockito).
-              </li>
-              <li>
-                I collaborated with teams from India, France, Mexico, and the USA through weekly presentations and used
-                version
-                control (git, gitlab) and Jira(agile) to track progress and manage tasks.
-              </li>
-              </p>
-            </ul>
-          </div>
-        </div>
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">Digital Innovation One</h3>
-            <div class="subheading mb-3">DioX Squad - Community Leader</div>
-            <div class="resume-date">
-              <span class="text-primary">May 2020 - November 2020</span>
-            </div>
-            <ul>
-              <li>
-                Developed applications and implemented new features in Squads creating solutions with agile methodology,
-                SCRUM and Kanban.
-              </li>
-              <li>
-                Assisted new students by engaging them in studies and work.
-              </li>
-              <li>
-                Developed APIs in Java (Spring) and C# (.Net) with database connection and interfaces with React and
-                Angular.
-              </li>
-              </p>
-            </ul>
+          <button
+            id="copy-email-hero"
+            type="button"
+            class="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 hover:border-brand-500 text-slate-800 dark:text-slate-100 font-mono text-xs sm:text-sm font-medium transition-all"
+          >
+            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Email (devalexrossi@gmail.com)</span>
+          </button>
+
+          <!-- Social Icon Buttons -->
+          <div class="flex items-center gap-2">
+            <a
+              href="https://github.com/4lexRossi"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              class="p-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:text-brand-500 hover:border-brand-500 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/4lex/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              class="p-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:text-brand-500 hover:border-brand-500 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+            </a>
+            <a
+              href="mailto:devalexrossi@gmail.com"
+              aria-label="Send Email"
+              class="p-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:text-brand-500 hover:border-brand-500 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- Quick Impact Metrics Strip -->
+      <div class="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+        <div class="rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/75 dark:bg-slate-900/65 p-5 glass-card">
+          <div class="font-mono text-2xl sm:text-3xl font-bold text-brand-600 dark:text-brand-400">6+ Years</div>
+          <div class="mt-1 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">Enterprise Engineering Experience</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/75 dark:bg-slate-900/65 p-5 glass-card">
+          <div class="font-mono text-2xl sm:text-3xl font-bold text-amber-500">3x AWS</div>
+          <div class="mt-1 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">Solutions Architect, Practitioner &amp; Dev</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/75 dark:bg-slate-900/65 p-5 glass-card">
+          <div class="font-mono text-2xl sm:text-3xl font-bold text-sky-500">4 Countries</div>
+          <div class="mt-1 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">Cross-Border Squads (PT, ES, UK, US)</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/75 dark:bg-slate-900/65 p-5 glass-card">
+          <div class="font-mono text-2xl sm:text-3xl font-bold text-emerald-500">60+</div>
+          <div class="mt-1 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">Stakeholder Product Demos Led</div>
+        </div>
+      </div>
     </section>
 
-    <hr class="m-0">
+    <!-- FEATURED ENGINEERING IMPACT / CASE STUDIES -->
+    <section id="impact" class="py-16 border-t border-slate-200/70 dark:border-slate-800/70">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-widest text-brand-600 dark:text-brand-400 font-semibold">
+            // Architectural Highlights
+          </span>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Featured Engineering Impact
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+            Mission-critical enterprise platforms delivered across banking, healthcare, and global supply chains.
+          </p>
+        </div>
+      </div>
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
-      <div class="w-100">
-        <h2 class="mb-5">Education &amp; Certifications</h2>
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project Card 1 -->
+        <article data-category="frontend cloud" class="project-card reveal rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 flex flex-col justify-between glass-card hover:border-brand-500/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
+                GFT • Enterprise SaaS
+              </span>
+              <span class="text-xs font-mono text-slate-500">2024 – Present</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+              Enterprise CRM &amp; Client Hierarchy Visualization
+            </h3>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Dual enterprise platforms: a Salesforce-like workforce/client management portal and an interactive hierarchical data visualization tool integrating <strong class="text-slate-900 dark:text-white">5 distinct backend REST systems</strong> via Node.js.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/70 dark:border-slate-800/70 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Vue 3 Composition API</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">TypeScript</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Node.js</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Vitest</span>
+          </div>
+        </article>
 
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">Uninter Faculty</h3>
-            <div class="subheading mb-3">Master Internet systems</div>
-            <div class="resume-date">
-              <span class="text-primary">01/2024 - in progress</span>
+        <!-- Project Card 2 -->
+        <article data-category="frontend" class="project-card reveal rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 flex flex-col justify-between glass-card hover:border-brand-500/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
+                Accenture PT • FinTech
+              </span>
+              <span class="text-xs font-mono text-slate-500">Lisbon, PT</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+              European Banking Micro-Frontend &amp; Auth Gateway
+            </h3>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Served as Frontend Tech Lead designing the end-to-end <strong class="text-slate-900 dark:text-white">Micro-Frontend architecture</strong> and centralized authentication portal for a major European bank across squads in Portugal, Spain, and the UK.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/70 dark:border-slate-800/70 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Angular 16</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Micro-Frontends</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">WCAG</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Jasmine/Karma</span>
+          </div>
+        </article>
+
+        <!-- Project Card 3 -->
+        <article data-category="frontend" class="project-card reveal rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 flex flex-col justify-between glass-card hover:border-brand-500/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                Thales Group • Global Finance
+              </span>
+              <span class="text-xs font-mono text-slate-500">2022 – 2024</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+              Global Card Production &amp; Logistics Platform
+            </h3>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Engineered the mission-critical frontend interface used by the world’s largest financial institutions to monitor credit and debit card manufacturing pipelines, inventory, and fulfillment logistics.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/70 dark:border-slate-800/70 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Vue.js</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">State Control</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Cypress E2E</span>
+          </div>
+        </article>
+
+        <!-- Project Card 4 -->
+        <article data-category="frontend cloud" class="project-card reveal rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 flex flex-col justify-between glass-card hover:border-brand-500/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+                Clarity Health • HealthTech AI
+              </span>
+              <span class="text-xs font-mono text-slate-500">Web &amp; Mobile</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+              AI Clinical Health &amp; EHR Ecosystem
+            </h3>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Spearheaded web dashboards, cross-platform iOS/Android mobile apps, and Node.js APIs for an AI-assisted electronic health record platform integrated with public and private health networks in Brazil.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/70 dark:border-slate-800/70 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Angular 14</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Flutter</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Node.js</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Playwright</span>
+          </div>
+        </article>
+
+        <!-- Project Card 5 -->
+        <article data-category="cloud" class="project-card reveal rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 flex flex-col justify-between glass-card hover:border-brand-500/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                Cognizant • Banking Security
+              </span>
+              <span class="text-xs font-mono text-slate-500">Full-Stack</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+              Real-Time Banking SIM-Swap Fraud Detection
+            </h3>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Built core security modules and authentication workflows for a real-time identity verification platform checking SIM card swaps prior to high-value banking transactions.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/70 dark:border-slate-800/70 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Angular 10</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Java 11 Spring</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">MariaDB / MySQL</span>
+          </div>
+        </article>
+
+        <!-- Project Card 6 -->
+        <article data-category="cloud" class="project-card reveal rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 flex flex-col justify-between glass-card hover:border-brand-500/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
+                Venturus • Automotive B2B
+              </span>
+              <span class="text-xs font-mono text-slate-500">Global Squads</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+              Automotive Dealership-to-Factory Order System
+            </h3>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Contributed full-stack capabilities to a high-security B2B transaction platform streamlining complex vehicle orders between dealerships and factories across USA, France, Mexico, and India.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200/70 dark:border-slate-800/70 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Angular 11</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Java Spring</span>
+            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python Django/Flask</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE EXPERIENCE TIMELINE -->
+    <section id="experience" class="py-16 border-t border-slate-200/70 dark:border-slate-800/70">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-widest text-brand-600 dark:text-brand-400 font-semibold">
+            // Career Trajectory
+          </span>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Professional Experience
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400">
+            Filter roles by leadership focus or full-stack engineering scope.
+          </p>
+        </div>
+
+        <!-- Discipline Filter Buttons -->
+        <div class="inline-flex p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/75 dark:bg-slate-900/75 self-start md:self-auto">
+          <button type="button" data-exp-filter="all" class="exp-filter-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-brand-600 text-white transition-all">
+            All Roles (7)
+          </button>
+          <button type="button" data-exp-filter="lead" class="exp-filter-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-all">
+            Frontend Lead
+          </button>
+          <button type="button" data-exp-filter="fullstack" class="exp-filter-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-all">
+            Full-Stack
+          </button>
+        </div>
+      </div>
+
+      <!-- Vertical Timeline -->
+      <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 sm:ml-4 space-y-8">
+
+        <!-- Role 1: GFT -->
+        <div data-exp-tags="lead fullstack" class="exp-item reveal relative pl-7 sm:pl-9">
+          <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-500 ring-4 ring-white dark:ring-[#07090f]"></span>
+          <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  Lead / Senior Frontend &amp; Full-Stack Engineer
+                </h3>
+                <p class="text-sm font-semibold text-brand-600 dark:text-brand-400">
+                  GFT • Remote (US / Brazil)
+                </p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                12/2024 – Present
+              </span>
+            </div>
+            <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Lead frontend architecture and UI delivery for two enterprise platforms: a Salesforce-like CRM/workstream portal and a strategic hierarchical data visualization application.</li>
+              <li>Architect modular, responsive interfaces in <strong class="text-slate-900 dark:text-white">Vue 3 (Composition API)</strong> and TypeScript with scalable state management and <strong class="text-slate-900 dark:text-white">Vitest</strong> unit testing.</li>
+              <li>Engineer <strong class="text-slate-900 dark:text-white">Node.js REST API</strong> integration layers unifying data across 5 distinct backend systems.</li>
+              <li>Collaborate directly with US-based engineering teams on system architecture, sprint specifications, and live business stakeholder demonstrations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 2: Accenture Portugal -->
+        <div data-exp-tags="lead" class="exp-item reveal relative pl-7 sm:pl-9">
+          <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-500 ring-4 ring-white dark:ring-[#07090f]"></span>
+          <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  Frontend Tech Lead / Senior Developer
+                </h3>
+                <p class="text-sm font-semibold text-sky-600 dark:text-sky-400">
+                  Accenture Portugal (Fyld) • Lisbon, Portugal
+                </p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                07/2023 – 11/2024
+              </span>
+            </div>
+            <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Spearheaded frontend architecture as Tech Lead for a mission-critical centralized banking portal and authentication gateway serving a major European financial institution.</li>
+              <li>Designed and rolled out an end-to-end <strong class="text-slate-900 dark:text-white">Micro-Frontend architecture</strong> in <strong class="text-slate-900 dark:text-white">Angular 16</strong>, unblocking developers and standardizing quality across distributed teams in Portugal, Spain, and the UK.</li>
+              <li>Delivered responsive, WCAG-compliant user flows with strict security controls and comprehensive unit test suites.</li>
+              <li>Presented technical roadmaps and release demonstrations to cross-functional business audiences of 60+ stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 3: Thales Group -->
+        <div data-exp-tags="lead" class="exp-item reveal relative pl-7 sm:pl-9">
+          <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-white dark:ring-[#07090f]"></span>
+          <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  Senior Frontend Developer
+                </h3>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  Thales Group • Brazil
+                </p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                07/2022 – 11/2024
+              </span>
+            </div>
+            <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Owned end-to-end frontend engineering for a global banking operations platform tracking credit and debit card manufacturing, inventory, and fulfillment logistics.</li>
+              <li>Built intuitive, data-dense <strong class="text-slate-900 dark:text-white">Vue.js</strong> interfaces with predictable state control and automated end-to-end regression suites in <strong class="text-slate-900 dark:text-white">Cypress</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 4: Clarity Health -->
+        <div data-exp-tags="lead fullstack" class="exp-item reveal relative pl-7 sm:pl-9">
+          <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-white dark:ring-[#07090f]"></span>
+          <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  Senior Software Engineer (Freelance Consultant)
+                </h3>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  Clarity Health • Brazil (20 hrs/week)
+                </p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                03/2022 – 11/2024
+              </span>
+            </div>
+            <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Directed frontend web, mobile, and API architecture for an AI-assisted electronic health record (EHR) platform integrated with Brazil's public and private health insurance networks.</li>
+              <li>Developed clinical workflows in <strong class="text-slate-900 dark:text-white">Angular 14</strong>, cross-platform iOS/Android mobile apps in <strong class="text-slate-900 dark:text-white">Flutter</strong>, supporting <strong class="text-slate-900 dark:text-white">Node.js</strong> REST APIs, and E2E automation with <strong class="text-slate-900 dark:text-white">Playwright</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 5: Cognizant -->
+        <div data-exp-tags="fullstack" class="exp-item reveal relative pl-7 sm:pl-9">
+          <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-white dark:ring-[#07090f]"></span>
+          <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  Full-Stack Software Developer
+                </h3>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  Cognizant • Brazil
+                </p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                10/2021 – 07/2022
+              </span>
+            </div>
+            <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Engineered core UI modules, authentication flows, and business logic for a real-time banking fraud-prevention platform detecting SIM-swap events prior to major financial transactions.</li>
+              <li>Built <strong class="text-slate-900 dark:text-white">Angular 10</strong> interfaces (Jasmine/Karma, Cypress) paired with <strong class="text-slate-900 dark:text-white">Java 11 / Spring</strong> REST services and MariaDB/MySQL databases (JUnit/Mockito).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 6: Venturus -->
+        <div data-exp-tags="fullstack" class="exp-item reveal relative pl-7 sm:pl-9">
+          <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-white dark:ring-[#07090f]"></span>
+          <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  Full-Stack Software Developer
+                </h3>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  Venturus • Brazil
+                </p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                11/2020 – 10/2021
+              </span>
+            </div>
+            <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Developed frontend modules in <strong class="text-slate-900 dark:text-white">Angular 11</strong> and backend REST APIs in <strong class="text-slate-900 dark:text-white">Java 8/11 (Spring)</strong> and <strong class="text-slate-900 dark:text-white">Python (Flask/Django)</strong> for an automotive dealership-to-factory order platform.</li>
+              <li>Collaborated in globally distributed Agile squads across India, France, Mexico, and the USA.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 7: Digital Innovation One -->
+        <div data-exp-tags="fullstack" class="exp-item reveal relative pl-7 sm:pl-9">
+          <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-white dark:ring-[#07090f]"></span>
+          <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  Community Leader / Full-Stack Developer
+                </h3>
+                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  Digital Innovation One • Brazil
+                </p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                05/2020 – 11/2020
+              </span>
+            </div>
+            <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Built full-stack web applications using <strong class="text-slate-900 dark:text-white">React, Angular, Java (Spring), and Python (Django)</strong> in Scrum/Kanban squads while mentoring incoming developers on code quality and software architecture.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AWS CERTIFICATIONS & TECHNICAL STACK MATRIX -->
+    <section id="skills" class="py-16 border-t border-slate-200/70 dark:border-slate-800/70">
+      <div class="mb-10 reveal">
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-500 font-semibold">
+          // Cloud Credentials &amp; Engineering Toolkit
+        </span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+          AWS Certifications &amp; Technical Stack
+        </h2>
+      </div>
+
+      <!-- AWS & Recognition Spotlight Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 reveal">
+        <!-- AWS SAA -->
+        <div class="rounded-2xl border border-amber-500/40 bg-gradient-to-br from-amber-500/10 via-white/80 to-white/60 dark:from-amber-500/15 dark:via-slate-900/85 dark:to-slate-900/70 p-5 glass-card">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-amber-500 text-slate-950">
+              AWS CERTIFIED
+            </span>
+            <span class="font-mono text-xs font-semibold text-amber-600 dark:text-amber-400">2026</span>
+          </div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white">
+            Solutions Architect – Associate
+          </h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400">
+            Amazon Web Services • Distributed Systems, VPC, IAM, HA &amp; Cost-Optimized Cloud Architecture
+          </p>
+        </div>
+
+        <!-- AWS Cloud Practitioner -->
+        <div class="rounded-2xl border border-amber-500/35 bg-gradient-to-br from-amber-500/10 via-white/80 to-white/60 dark:from-amber-500/10 dark:via-slate-900/85 dark:to-slate-900/70 p-5 glass-card">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-amber-500/90 text-slate-950">
+              AWS CERTIFIED
+            </span>
+            <span class="font-mono text-xs font-semibold text-amber-600 dark:text-amber-400">2026</span>
+          </div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white">
+            Cloud Practitioner
+          </h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400">
+            Amazon Web Services • Cloud Security, Global Infrastructure, Billing &amp; Core AWS Services
+          </p>
+        </div>
+
+        <!-- AWS Developer Associate -->
+        <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white/80 dark:bg-slate-900/70 p-5 glass-card">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono font-semibold bg-sky-500/15 text-sky-600 dark:text-sky-400">
+              AWS DEVELOPER
+            </span>
+            <span class="font-mono text-xs text-slate-500">2021</span>
+          </div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white">
+            AWS Certified Developer – Associate
+          </h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400">
+            Serverless, Lambda, DynamoDB, API Gateway &amp; CI/CD Cloud Application Delivery
+          </p>
+        </div>
+
+        <!-- Hack for Good -->
+        <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white/80 dark:bg-slate-900/70 p-5 glass-card">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono font-semibold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+              HACKATHON
+            </span>
+            <span class="font-mono text-xs text-slate-500">2020</span>
+          </div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white">
+            9th Place – Hack for Good
+          </h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400">
+            Top-10 Finish • Rapid Full-Stack Prototyping &amp; Social Impact Engineering
+          </p>
+        </div>
+      </div>
+
+      <!-- Categorized Tech Stack Matrix -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal">
+        <!-- Column 1: Frontend & Architecture -->
+        <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+          <div class="flex items-center gap-2.5 mb-5">
+            <div class="w-8 h-8 rounded-lg bg-brand-500/15 text-brand-500 flex items-center justify-center font-mono font-bold text-sm">
+              &lt;/&gt;
+            </div>
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Frontend &amp; Architecture</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill">Vue 3 (Composition API)</span>
+            <span class="skill-pill">Angular (v10–v16)</span>
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">JavaScript (ES6+)</span>
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">Micro-Frontends</span>
+            <span class="skill-pill">Pinia / Vuex</span>
+            <span class="skill-pill">RxJS / NgRx</span>
+            <span class="skill-pill">HTML5 / CSS3 / SCSS</span>
+            <span class="skill-pill">RTL &amp; WCAG Accessibility</span>
+          </div>
+        </div>
+
+        <!-- Column 2: Backend & Cloud -->
+        <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+          <div class="flex items-center gap-2.5 mb-5">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-500 flex items-center justify-center font-mono font-bold text-sm">
+              AWS
+            </div>
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Backend &amp; Cloud</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill">AWS Solutions Architect</span>
+            <span class="skill-pill">AWS Cloud Practitioner</span>
+            <span class="skill-pill">Node.js (REST APIs)</span>
+            <span class="skill-pill">Java 8/11 (Spring Boot)</span>
+            <span class="skill-pill">Go (Goroutines, Channels)</span>
+            <span class="skill-pill">Python (Django, Flask)</span>
+            <span class="skill-pill">Apache Kafka</span>
+            <span class="skill-pill">Microservices</span>
+          </div>
+        </div>
+
+        <!-- Column 3: Mobile, QA & Databases -->
+        <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 glass-card">
+          <div class="flex items-center gap-2.5 mb-5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-500 flex items-center justify-center font-mono font-bold text-sm">
+              DB
+            </div>
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Mobile, QA &amp; Databases</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill">Flutter / Dart (iOS &amp; Android)</span>
+            <span class="skill-pill">Vitest</span>
+            <span class="skill-pill">Playwright</span>
+            <span class="skill-pill">Cypress</span>
+            <span class="skill-pill">Jasmine / Karma</span>
+            <span class="skill-pill">JUnit / Mockito</span>
+            <span class="skill-pill">SonarQube</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">MariaDB / MySQL</span>
+            <span class="skill-pill">DynamoDB</span>
+            <span class="skill-pill">MongoDB Atlas</span>
+            <span class="skill-pill">GitLab CI/CD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & LANGUAGES -->
+    <section id="education" class="py-16 border-t border-slate-200/70 dark:border-slate-800/70">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 reveal">
+        <!-- Education (2 columns on lg) -->
+        <div class="lg:col-span-2">
+          <span class="font-mono text-xs uppercase tracking-widest text-brand-600 dark:text-brand-400 font-semibold">
+            // Academic Background
+          </span>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
+            Education
+          </h2>
+
+          <div class="space-y-4">
+            <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 glass-card">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white">Bachelor of Science in Computer Science</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Centro Universitário FAM</p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 self-start sm:self-center">
+                Expected 2026
+              </span>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 glass-card">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white">Postgraduate Specialization in GoLang Backend Engineering</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400">FCTECH</p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 self-start sm:self-center">
+                2024
+              </span>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 glass-card">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white">Associate Degree in Internet Systems</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Centro Universitário FAM</p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 self-start sm:self-center">
+                2022
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Languages (1 column on lg) -->
+        <div>
+          <span class="font-mono text-xs uppercase tracking-widest text-sky-500 font-semibold">
+            // Global Communication
+          </span>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
+            Languages
+          </h2>
+
+          <div class="rounded-2xl border border-slate-200/90 dark:border-slate-800/90 bg-white/80 dark:bg-slate-900/70 p-6 space-y-5 glass-card">
+            <div>
+              <div class="flex items-center justify-between text-sm font-semibold mb-1.5">
+                <span class="text-slate-900 dark:text-white">Portuguese</span>
+                <span class="font-mono text-xs text-emerald-500">Native</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                <div class="h-full w-full bg-emerald-500 rounded-full"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-sm font-semibold mb-1.5">
+                <span class="text-slate-900 dark:text-white">English</span>
+                <span class="font-mono text-xs text-brand-500">Fluent / Advanced</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                <div class="h-full w-[92%] bg-brand-500 rounded-full"></div>
+              </div>
+              <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                Daily collaboration with engineering &amp; product teams across the USA, UK, Portugal, and Spain.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 border-t border-slate-200/70 dark:border-slate-800/70">
+      <div class="rounded-3xl border border-slate-200/90 dark:border-slate-800/90 bg-gradient-to-br from-brand-600/10 via-white/90 to-sky-500/10 dark:from-brand-600/15 dark:via-slate-900/90 dark:to-sky-500/10 p-6 sm:p-10 lg:p-12 glass-card reveal">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <!-- Left Info -->
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-brand-600 dark:text-brand-400 font-semibold">
+              // Let's Build Together
+            </span>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Ready to scale your frontend architecture or cloud platform?
+            </h2>
+            <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              Whether you're hiring for a Staff/Lead Frontend role, architecting a Micro-Frontend migration, or looking for an AWS-certified Senior Full-Stack engineer, feel free to reach out directly.
+            </p>
+
+            <div class="mt-8 space-y-3 text-sm">
+              <!-- Email -->
+              <div class="flex items-center justify-between gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/60">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="w-9 h-9 rounded-lg bg-brand-500/15 text-brand-500 flex items-center justify-center shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  <a href="mailto:devalexrossi@gmail.com" class="font-mono text-xs sm:text-sm font-semibold text-slate-900 dark:text-white truncate hover:text-brand-500">
+                    devalexrossi@gmail.com
+                  </a>
+                </div>
+                <button
+                  id="copy-email-contact"
+                  type="button"
+                  class="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white text-slate-700 dark:text-slate-300 transition-colors shrink-0"
+                >
+                  Copy
+                </button>
+              </div>
+
+              <!-- Phone / WhatsApp -->
+              <a
+                href="https://wa.me/5519988308501"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/60 hover:border-emerald-500/50 transition-colors"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="w-9 h-9 rounded-lg bg-emerald-500/15 text-emerald-500 flex items-center justify-center shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="font-mono text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">+55 19 98830-8501</div>
+                    <div class="text-xs text-slate-500">Phone / WhatsApp • Piracicaba, SP, Brazil</div>
+                  </div>
+                </div>
+                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400">Chat &rarr;</span>
+              </a>
+
+              <!-- LinkedIn & GitHub Links -->
+              <div class="grid grid-cols-2 gap-3 pt-1">
+                <a
+                  href="https://www.linkedin.com/in/4lex/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/60 hover:border-brand-500 text-sm font-semibold text-slate-800 dark:text-slate-200 transition-colors"
+                >
+                  <span>LinkedIn</span>
+                  <span class="text-xs font-mono text-slate-400">/in/4lex</span>
+                </a>
+                <a
+                  href="https://github.com/4lexRossi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/60 hover:border-brand-500 text-sm font-semibold text-slate-800 dark:text-slate-200 transition-colors"
+                >
+                  <span>GitHub</span>
+                  <span class="text-xs font-mono text-slate-400">/4lexRossi</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Interactive Mailto Message Composer -->
+          <form id="contact-form" class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/75 p-6 space-y-4">
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Quick Message Composer</h3>
+            <div>
+              <label for="sender-name" class="block text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Your Name</label>
+              <input
+                id="sender-name"
+                type="text"
+                required
+                placeholder="Jane Doe"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
+              />
             </div>
             <div>
-              <p>
-                Master's degree
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">FAM - Faculdades das Américas</h3>
-            <div class="subheading mb-3">Internet systems</div>
-            <div class="resume-date">
-              <span class="text-primary">06/2020 - 12/2022</span>
+              <label for="sender-subject" class="block text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Topic / Role</label>
+              <input
+                id="sender-subject"
+                type="text"
+                required
+                placeholder="Staff Frontend / Full-Stack Opportunity"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
+              />
             </div>
             <div>
-              <p>
-                Bachelor's degree
-              </p>
+              <label for="sender-message" class="block text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Message</label>
+              <textarea
+                id="sender-message"
+                rows="4"
+                required
+                placeholder="Hi Alexsander, I came across your portfolio and would love to discuss..."
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 resize-none"
+              ></textarea>
             </div>
-          </div>
+            <button
+              type="submit"
+              class="w-full py-3 px-5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/20 transition-all flex items-center justify-center gap-2"
+            >
+              <span>Open in Email Client</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </form>
         </div>
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">Udemy</h3>
-            <div class="subheading mb-3">Ultimate AWS Certified Developer Associate 2021</div>
-            <div class="resume-date">
-              <span class="text-primary">July 2021</span>
-            </div>
-            <div>
-              <p>Apply AWS services for real apps</p>
-              <p>Understand API serverless using AWS Lambda, API Gateway, DynamoDB e Cognito</p>
-              <p>Implement message patterns and integrations using AWS SQS, SNS e Kinesis</p>
-              <p>Monitor, track and audit microsservices using CloudWatch, X-Ray e CloudTrail</p>
-              <p>Write infrastructura as a code using AWS CloudFormation</p>
-              <p>Protect the system in the cloud using AWS KMS, Encryption SDK, security policy IAM e SSM</p>
-            </div>
-          </div>
-        </div>
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <h3 class="mb-0">Digital Innovation One</h3>
-            <div class="subheading mb-3">Developer Courses</div>
-            <div class="resume-date">
-              <span class="text-primary">February 2020 - October 2020</span>
-            </div>
-            <div>
-              <p>All certified courses</p>
-              <p>Frontend - HTML/CSS/Javascript, Angular, React</p>
-              <p>Backend - Java(Spring), C#(ASP .NET core), Python(Django)</p>
-            </div>
-          </div>
-        </div>
-    </section>
-
-    <hr class="m-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
-      <div class="w-100">
-        <h2 class="mb-5">Skills &amp; Softskils</h2>
-
-        <div class="subheading mb-3">Programming Languages &amp; frameworks</div>
-        <ul class="list-inline dev-icons">
-          <li class="list-inline-item">
-            <i class="fab fa-angular"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fab fa-vuejs"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fab fa-js-square"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fab fa-html5"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fab fa-css3-alt"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fab fa-android"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fab fa-java"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fab fa-npm"></i>
-          </li>
-          <li class="list-inline-item">
-            <i class="fab fa-node-js"></i>
-          </li>
-          </li>
-        </ul>
-
-        <div class="subheading mb-3">Soft Skills</div>
-        <ul class="fa-ul mb-0">
-          <li>
-            <i class="fa-li fa fa-check"></i>
-            Proactive &amp; Criative
-          </li>
-          <li>
-            <i class="fa-li fa fa-check"></i>
-            Leader
-          </li>
-          <li>
-            <i class="fa-li fa fa-check"></i>
-            Team player
-          </li>
-          <li>
-            <i class="fa-li fa fa-check"></i>
-            Agile &amp; Scrum
-          </li>
-        </ul>
       </div>
     </section>
+  </main>
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="languages">
-      <div class="w-100">
-        <h2 class="mb-5">Idioms</h2>
-        <li>
-          Portuguese - Native (C2)
-        </li>
-        <li>
-          English - Fluente (C1)
-        </li>
-        <li>
-          Spanish - Basic (B1)
-        </li>
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-slate-200/80 dark:border-slate-800/80 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div class="font-mono">
+        &copy; <span id="current-year">2026</span> Alexsander O. Rossi • Built for GitHub Pages (<span class="text-brand-500">4lexrossi.github.io</span>)
       </div>
-    </section>
-
-    <hr class="m-0">
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
-      <div class="w-100">
-        <h2 class="mb-5">Awards &amp; Certifications</h2>
-        <ul class="fa-ul mb-0">
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Ultimate AWS Certified Developer Associate 2021
-          </li>
-          <li>
-            - 32 hours certified course - 07/2021
-          </li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Angular Developer
-          </li>
-          <li>
-            - 82 hours certified course - 04/2021
-          </li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Desenvolvedor Fullstack Python - Digital Innovation One
-          </li>
-          <li>
-            - 100 hours certified course - 06/2020
-          </li>
-          <li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Global Fullstack Developer - Digital Innovation One
-          </li>
-          <li>
-            - 97 hours certified course - 06/2020
-          </li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Backend Developer PHP - Digital Innovation One
-          </li>
-          <li>
-            - 77 hours certified course - 05/2020
-          </li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            FullStack Developer banco Carrefour - Digital Innovation One
-          </li>
-          <li>
-            - 91 hours certified course - 05/2020
-          </li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Backend Developer Carrefour - Digital Innovation One
-          </li>
-          <li>
-            - 93 hours certified course - 05/2020
-          </li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Front-end Developer Angular - Digital Innovation One
-          </li>
-          <li>
-            - 73 hours certified course - 04/2020
-          </li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Front-end Developer ReactJS - Digital Innovation One
-          </li>
-          <li>
-            - 82 hours certified course - 04/2020
-          </li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            9<sup>th</sup>
-            Place - Hack for Good powered by Twillio
-          </li>
-          <li>
-            promoted by Shawee - Hackaton 03/2020
-          </li>
-        </ul>
+      <div class="flex items-center gap-4 font-mono">
+        <a href="https://github.com/4lexRossi" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/4lex/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition-colors">LinkedIn</a>
+        <a href="#top" class="hover:text-brand-500 transition-colors">Back to top &uarr;</a>
       </div>
-    </section>
-  </div>
+    </div>
+  </footer>
 
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Interactive Logic -->
+  <script>
+    (function () {
+      // Apply consistent Tailwind classes to skill pills
+      document.querySelectorAll('.skill-pill').forEach((pill) => {
+        pill.className =
+          'px-3 py-1.5 rounded-xl text-xs font-mono font-medium border border-slate-200 dark:border-slate-700/80 bg-slate-100/80 dark:bg-slate-800/70 text-slate-700 dark:text-slate-200 hover:border-brand-500/60 hover:text-brand-600 dark:hover:text-brand-400 transition-colors cursor-default';
+      });
 
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+      // Dynamic Footer Year
+      const yearEl = document.getElementById('current-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  <script src="js/resume.js"></script>
+      // Theme Toggle (Dark Mode Default)
+      const htmlEl = document.documentElement;
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const savedTheme = localStorage.getItem('ar-portfolio-theme');
+      if (savedTheme === 'light') {
+        htmlEl.classList.remove('dark');
+      } else {
+        htmlEl.classList.add('dark');
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        const isDark = htmlEl.classList.toggle('dark');
+        localStorage.setItem('ar-portfolio-theme', isDark ? 'dark' : 'light');
+      });
+
+      // Mobile Navigation Drawer
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+
+      // Toast Notification Helper
+      function showToast(message) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className =
+          'pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs sm:text-sm font-medium shadow-xl border border-slate-700 dark:border-slate-200 transition-all duration-300 opacity-0 translate-y-2';
+        toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span>${message}</span>`;
+        container.appendChild(toast);
+
+        requestAnimationFrame(() => {
+          toast.classList.remove('opacity-0', 'translate-y-2');
+        });
+
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-2');
+          setTimeout(() => toast.remove(), 300);
+        }, 2800);
+      }
+
+      // Copy Email to Clipboard (iFrame & browser safe fallback)
+      function copyEmail() {
+        const email = 'devalexrossi@gmail.com';
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showToast('Email copied: devalexrossi@gmail.com');
+        } catch (err) {
+          showToast('Email: devalexrossi@gmail.com');
+        }
+        document.body.removeChild(textarea);
+      }
+
+      document.getElementById('copy-email-hero').addEventListener('click', copyEmail);
+      document.getElementById('copy-email-contact').addEventListener('click', copyEmail);
+
+      // Perspective Switcher (Updates Hero Narrative & Highlights Matching Projects)
+      const narratives = {
+        all: `Senior Software Engineer with <strong class="text-slate-900 dark:text-white">6+ years of experience</strong> architecting scalable micro-frontend ecosystems, enterprise SaaS platforms, and cloud-native web applications across Europe (<strong class="text-slate-900 dark:text-white">Portugal, Spain, UK</strong>) and the Americas (<strong class="text-slate-900 dark:text-white">USA, Brazil</strong>). Backed by <strong class="text-amber-600 dark:text-amber-400">AWS Certified Solutions Architect – Associate</strong> and <strong class="text-amber-600 dark:text-amber-400">AWS Certified Cloud Practitioner</strong> credentials, I bridge deep frontend craftsmanship in <span class="font-mono text-sm text-brand-600 dark:text-brand-400">Vue 3</span>, <span class="font-mono text-sm text-brand-600 dark:text-brand-400">Angular</span>, and <span class="font-mono text-sm text-brand-600 dark:text-brand-400">TypeScript</span> with resilient backend services in <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Node.js</span>, <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Java/Spring</span>, and <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Go</span>.`,
+        frontend: `Staff / Lead Frontend Engineer specializing in <strong class="text-slate-900 dark:text-white">Micro-Frontend architecture</strong>, enterprise UI systems, and high-throughput web applications. Proven track record leading distributed frontend squads across <strong class="text-slate-900 dark:text-white">Portugal, Spain, the UK, and the USA</strong>—standardizing <span class="font-mono text-sm text-brand-600 dark:text-brand-400">Vue 3 (Composition API)</span>, <span class="font-mono text-sm text-brand-600 dark:text-brand-400">Angular (v10–v16)</span>, and <span class="font-mono text-sm text-brand-600 dark:text-brand-400">TypeScript</span> codebases, enforcing WCAG accessibility, and elevating automated QA with <span class="font-mono text-sm text-emerald-600 dark:text-emerald-400">Vitest, Playwright &amp; Cypress</span>.`,
+        cloud: `Senior Full-Stack &amp; Cloud-Native Engineer holding <strong class="text-amber-600 dark:text-amber-400">AWS Certified Solutions Architect – Associate</strong>, <strong class="text-amber-600 dark:text-amber-400">Cloud Practitioner</strong>, and <strong class="text-amber-600 dark:text-amber-400">Developer – Associate</strong> credentials. Experienced designing RESTful microservices, multi-system API orchestration layers, and event-driven architectures using <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Node.js</span>, <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Java 11 (Spring)</span>, <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Go</span>, <span class="font-mono text-sm text-sky-600 dark:text-sky-400">Python</span>, and relational/NoSQL databases (<span class="font-mono text-sm text-slate-900 dark:text-white">PostgreSQL, MariaDB, DynamoDB</span>).`
+      };
+
+      const perspectiveBtns = document.querySelectorAll('.perspective-btn');
+      const heroNarrative = document.getElementById('hero-narrative');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      perspectiveBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const mode = btn.getAttribute('data-perspective');
+
+          perspectiveBtns.forEach((b) => {
+            b.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+            b.classList.add('text-slate-600', 'dark:text-slate-300');
+          });
+          btn.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+          btn.classList.remove('text-slate-600', 'dark:text-slate-300');
+
+          heroNarrative.innerHTML = narratives[mode] || narratives.all;
+
+          // Subtle emphasis on matching project cards
+          projectCards.forEach((card) => {
+            const cats = card.getAttribute('data-category') || '';
+            if (mode === 'all' || cats.includes(mode)) {
+              card.style.opacity = '1';
+              card.style.transform = '';
+            } else {
+              card.style.opacity = '0.45';
+            }
+          });
+        });
+      });
+
+      // Experience Discipline Filter
+      const expBtns = document.querySelectorAll('.exp-filter-btn');
+      const expItems = document.querySelectorAll('.exp-item');
+
+      expBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-exp-filter');
+
+          expBtns.forEach((b) => {
+            b.classList.remove('bg-brand-600', 'text-white');
+            b.classList.add('text-slate-600', 'dark:text-slate-300');
+          });
+          btn.classList.add('bg-brand-600', 'text-white');
+          btn.classList.remove('text-slate-600', 'dark:text-slate-300');
+
+          expItems.forEach((item) => {
+            const tags = item.getAttribute('data-exp-tags') || '';
+            if (filter === 'all' || tags.includes(filter)) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // Contact Message Composer (mailto trigger)
+      const contactForm = document.getElementById('contact-form');
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('sender-name').value.trim();
+        const subject = document.getElementById('sender-subject').value.trim();
+        const message = document.getElementById('sender-message').value.trim();
+
+        const mailtoSubject = encodeURIComponent(`[Portfolio] ${subject} — ${name}`);
+        const mailtoBody = encodeURIComponent(`Hi Alexsander,\n\n${message}\n\nBest regards,\n${name}`);
+        window.location.href = `mailto:devalexrossi@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+        showToast('Opening your default email client...');
+      });
+
+      // IntersectionObserver for Scroll Reveal
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        revealEls.forEach((el) => observer.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('visible'));
+      }
+    })();
+  </script>
 </body>
-
 </html>
